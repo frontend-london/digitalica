@@ -1,0 +1,66 @@
+
+				<div class="boxbig-news">
+					<div class="boxbig-news-header">
+						<h1><?=$thread['title']?></h1>
+						<?=$thread['date']?>
+					</div>
+                                        <?if($thread['img_big']):?>
+                                            <img src="images/threads/<?=$thread['id']?>_b.jpg" alt="" class="boxbig-news-img">
+                                        <?endif;?>
+
+					<?=$thread['long_text']?>
+
+					<div class="boxbig-news-footer">
+						by: <a href="people"><?=$thread['author_name']?></a>
+						<span class="comments" ><?if($thread['comments']>0):?><?=$thread['comments']?> comments<?else:?>no comment yet<?endif;?></span>
+						<a href="http://www.addthis.com/bookmark.php?v=250&amp;username=modul" class="addthis_button share">Share</a>
+					</div>
+				</div>
+                                <?if(!empty($comments)): ?>
+                                    <div class="boxbig-comments-list" id="comment">
+                                            <h1>Comments</h1>
+                                            <?$counter=0; foreach ($comments as $c): ?>
+                                                <div class="boxbig-comments-item">
+                                                    <p><?=$c['comment']?></p>
+                                                    <ul class="boxbig-comments-item-footer">
+                                                        <li><?=$c['date']?></li>
+                                                        <li>by <span class="pink"><?=$c['name']?></span></li>
+                                                    </ul>
+                                                </div>
+                                            <?$counter++; endforeach; ?>
+                                    </div>
+                                <?endif;?>
+				<div class="boxbig-comments">
+					<h1>Creative Dialogue - Wow! rubish etc, ..?</h1>
+                                        <?if(!empty($t['message'])):?><?endif;?>
+                                            <div id="boxbig-comments-message">
+                                                <?=isset($t['message'])?$t['message']:'';?>
+                                            </div>
+                                        
+					<div class="boxbig-comments-add">
+                                            <form method="post" action="<?=$full_url?>" name="send_comment" id="send_comment">
+                                                <input type="hidden" name="sent" value="1">
+						<table cellpadding="0" cellspacing="0">
+							<tr>
+								<td class="bca-td1">Your Name</td>
+                                                                <td class="bca-td2"><input type="text" name="name" value="<?=isset($name)?$name:'';?>" id="formName"></td>
+								<td class="bca-td3">Required</td>
+							</tr>
+							<tr>
+								<td class="bca-td1">Your E-mail</td>
+                                                                <td class="bca-td2"><input type="text" name="email" value="<?=isset($email)?$email:'';?>" id="formEmail"></td>
+								<td class="bca-td3"> ( Required, will not be published ) </td>
+							</tr>
+							<tr>
+								<td class="bca-td1">Comment*</td>
+								<td class="bca-td2"><textarea name="comment" id="formComment"><?=isset($comment)?$comment:'';?></textarea></td>
+								<td class="bca-td3 bca-tdsend"><a href="javascript: document.send_comment.submit();" id="sendButton" class="send">Send</a></td>
+							</tr>
+						</table>
+                                            </form>
+					</div>
+					<div class="boxbig-comments-rules">
+						* Comments are moderated and generallywill be posted if they are on-topic and not abusive. <br>
+						For more information, please see our <a href="faq">FAQ</a>.
+					</div>
+				</div>

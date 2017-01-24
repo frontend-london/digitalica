@@ -1,0 +1,99 @@
+<? include('templates/top.phtml');?>
+    <div id="submenu">
+        <h1><?=$_SESSION['sections'][$active_category]['name_'.LANG]?></h1>
+        <ul>
+            <?if(!empty($t['menu'][SECTION_DESIGN_STUFF])): ?>
+                <li class="menu-comments-categories">Design Stuff:</li>
+                <?$counter=0; foreach ($t['menu'][SECTION_DESIGN_STUFF] as $menu): ?>
+                    <li class="menu-comments-items">
+                        <a class="submenu-left<?if($menu['id']==$t['comments'][0]['thread']):?>-selected<?endif;?>" href="<?=SCRIPT."?category=$category&action=edit{$t['url_all']}&id={$menu['id']}"?>"><?=$menu['title']?></a>
+                    </li>
+                <?$counter++; endforeach; ?>
+            <?endif; ?>
+            <?if(!empty($t['menu'][SECTION_SOUND_STUFF])): ?>
+                <li class="menu-comments-categories">Sound Stuff:</li>
+                <?$counter=0; foreach ($t['menu'][SECTION_SOUND_STUFF] as $menu): ?>
+                    <li class="menu-comments-items">
+                        <a class="submenu-left<?if($menu['id']==$t['comments'][0]['thread']):?>-selected<?endif;?>" href="<?=SCRIPT."?category=$category&action=edit{$t['url_all']}&id={$menu['id']}"?>"><?=$menu['title']?></a>
+                    </li>
+                <?$counter++; endforeach; ?>
+            <?endif; ?>
+            <?if(!empty($t['menu'][SECTION_GOOD_EVENTS])): ?>
+                <li class="menu-comments-categories">Good Events:</li>
+                <?$counter=0; foreach ($t['menu'][SECTION_GOOD_EVENTS] as $menu): ?>
+                    <li class="menu-comments-items">
+                        <a class="submenu-left<?if($menu['id']==$t['comments'][0]['thread']):?>-selected<?endif;?>" href="<?=SCRIPT."?category=$category&action=edit{$t['url_all']}&id={$menu['id']}"?>"><?=$menu['title']?></a>
+                    </li>
+                <?$counter++; endforeach; ?>
+            <?endif; ?>
+            <?if(!empty($t['menu'][SECTION_DESIGN_SHOCK])): ?>
+                <li class="menu-comments-categories">Design Shock:</li>
+                <?$counter=0; foreach ($t['menu'][SECTION_DESIGN_SHOCK] as $menu): ?>
+                    <li class="menu-comments-items">
+                        <a class="submenu-left<?if($menu['id']==$t['comments'][0]['thread']):?>-selected<?endif;?>" href="<?=SCRIPT."?category=$category&action=edit{$t['url_all']}&id={$menu['id']}"?>"><?=$menu['title']?></a>
+                    </li>
+                <?$counter++; endforeach; ?>
+            <?endif; ?>
+            <?if(!empty($t['menu'][SECTION_POP_STUFF])): ?>
+                <li class="menu-comments-categories">Pop Stuff:</li>
+                <?$counter=0; foreach ($t['menu'][SECTION_POP_STUFF] as $menu): ?>
+                    <li class="menu-comments-items">
+                        <a class="submenu-left<?if($menu['id']==$t['comments'][0]['thread']):?>-selected<?endif;?>" href="<?=SCRIPT."?category=$category&action=edit{$t['url_all']}&id={$menu['id']}"?>"><?=$menu['title']?></a>
+                    </li>
+                <?$counter++; endforeach; ?>
+            <?endif; ?>
+        </ul>
+    </div>
+    <div id="content">
+        <?if(!empty ($t['message'])):?>
+            <ul>
+                <li class="bold red">
+                    <?=$t['message']?>
+                </li>
+            </ul>
+        <?endif; ?>
+        
+        <div class="boxbig-comments-list">
+            <div class="boxbig-comments-item">
+                <p style="font-weight:bold;"><?=$t['thread']['title']?></p>
+                <br>
+                <p><?=$t['thread']['short_text']?></p>
+                <br>
+                <p>
+                    <?if(!empty($t['thread']['url'])):?>
+                        <a href="<?=$t['thread']['s_url']?>/<?=$t['thread']['url']?>" class="orange" target="_blank"><?=LANG_PODGLAD_STRONY?></a> &nbsp; | &nbsp;
+                    <?endif;?>
+                    <?if($t['show_all']):?>
+                        <a href="<?=SCRIPT."?category=$category&action=edit&id={$t['thread']['id']}"?>" class="orange"><?=LANG_POKAZ_NOWE_KOMENTARZE?></a>
+                    <?else:?>
+                        <a href="<?=SCRIPT."?category=$category&action=edit-all&id={$t['thread']['id']}"?>" class="orange"><?=LANG_POKAZ_WSZYSTKIE_KOMENTARZE?></a>
+                    <?endif;?>
+                </p>
+            </div>
+            <div style="padding-top:10px; font-weight:bold;">
+                <?if(!empty ($t['message2'])):?>
+                    <span class="red bold"><?=$t['message2']?></span>
+                <?elseif($t['show_all']):?>
+                    <?=LANG_WSZYSTKIE_KOMENTARZE?>:
+                <?else:?>
+                    <?=LANG_NOWE_KOMENTARZE?>:
+                <?endif;?>
+            </div>
+            <?if(!empty($t['comments'])): ?>
+                <?$counter=0; foreach ($t['comments'] as $c): ?>
+                    <div class="boxbig-comments-item">
+                        <p><?=$c['comment']?></p>
+                        <ul class="boxbig-comments-item-footer">
+                            <li><?=$c['date']?></li>
+                            <li>by <a href="mailto:<?=$c['email']?>"><?=$c['name']?></a></li>
+                            <li style="float:right"><a href="<?=SCRIPT."?category=$category&action=delete{$t['url_all']}&id={$c['thread']}&id_s={$c['id']}"?>" onclick="return confirm('<?=LANG_KOMENTARZE_KOMUNIKAT?>');"><?=LANG_USUN?></a></li>
+                            <?if(!$c['validated']):?>
+                                <li style="float:right"><a href="<?=SCRIPT."?category=$category&action=accept{$t['url_all']}&id={$c['thread']}&id_s={$c['id']}"?>"><?=LANG_ZAAKCEPTUJ?></a></li>
+                            <?endif;?>
+                        </ul>
+                    </div>
+                <?$counter++; endforeach; ?>
+            <?endif; ?>
+        </div>
+    </div>
+<? include('templates/bottom.phtml');?>

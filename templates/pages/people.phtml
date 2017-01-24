@@ -1,0 +1,18 @@
+<? include('templates/other/top.phtml');?>
+			<div class="sectionbig">
+				<div class="section-title">
+					<a href="people"><img src="images/home/people.png" alt="People - Designers, producers, djs who are involwed in Digitalica"></a>
+				</div>
+
+                                <?$counter=0; foreach ($t['people'] as $p): ?>
+                                    <div class="boxbig-interviews">
+                                        <img src="images/people/<?=$p['id']?>.jpg" alt="" class="bi-img-<?if($counter%2==0):?>brown<?else:?>pink<?endif?>">
+                                        <div class="bi-text">
+                                                <span class="bi-text-name"><?=$p['title']?></span><br><br>
+                                                <?=$p['long_text']?>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                <?$counter++; endforeach; ?>
+			</div>
+<? include('templates/other/bottom.phtml');?>

@@ -1,0 +1,38 @@
+div.boxbig-comments-list {
+    padding-top: 16px;
+}
+
+div.boxbig-comments-item {
+	border: dotted #3d230e;
+	border-width: 0px 0px 1px 0px;
+	padding-top: 14px;
+	padding-bottom: 10px;
+        width:530px;
+}
+
+div#content ul.boxbig-comments-item-footer {
+    font-size:9px;
+    padding-top:6px;
+    height:20px;
+
+}
+
+div#content ul.boxbig-comments-item-footer li {
+    display:inline;
+    width:auto;
+    padding:0px;
+    padding-right:11px;
+    border:0px;
+    float:left;
+}
+
+div#submenu ul li.menu-comments-categories {
+    font-weight:bold;
+    border:none;
+    padding-top:20px;
+}
+
+div#submenu ul li.menu-comments-items {
+    margin-left:10px;
+    width: 264px;
+}

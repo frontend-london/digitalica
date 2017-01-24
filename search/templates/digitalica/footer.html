@@ -1,0 +1,13 @@
+                        </div>
+                        <?
+                            polacz_z_baza($link);
+
+                            mysql_query("SET NAMES utf8");
+                            mysql_query("SET CHARACTER SET utf8");
+                            mysql_query("SET SESSION collation_connection='utf8_general_ci'");
+
+                            include('../controllers/include/rightside.php');
+                            include('../templates/other/bottom.phtml');
+
+                            rozlacz_z_baza($link);
+                        ?>

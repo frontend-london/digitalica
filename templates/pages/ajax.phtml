@@ -1,0 +1,35 @@
+<div>
+    <?if(!empty($t['ajax'])): ?>
+        <?$counter=0; foreach ($t['ajax'] as $box): ?>
+            <div class="box-<?=$t['color']?>">
+                    <div class="box-color">
+                            <p class="box-title-p"><a href="<?=$t['section']?>-stuff/<?=$box['url']?>"><?=$box['title']?></a></p>
+                            <p class="box-date"><?=$box['date']?></p>
+                            <?if($box['img_small']):?>
+                                <div class="box-line"></div>
+                                <a href="<?=$t['section']?>-stuff/<?=$box['url']?>"><img src="images/threads/<?=$box['id']?>.jpg" alt="" class="box-image"></a>
+                            <?endif;?>
+                    </div>
+                    <div class="box-line"></div>
+                    <div class="box-text">
+                        <?=$box['short_text']?>
+                    </div>
+                    <div class="box-footer">
+                            <div class="box-line"></div>
+                            <div class="box-footer-left">
+                                    by: <a href="people"><?=$box['author_name']?></a>
+                            </div>
+                            <div class="box-footer-right">
+                                <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=modul" addthis:url="<?=ADRES?><?=$t['section']?>-stuff/<?=$box['url']?>" class="addthis_button share2">Share</a>
+                                <div class="fb-like" data-send="false" data-href="<?=ADRES?><?=$t['section']?>-stuff/<?=$box['url']?>" data-layout="button_count" data-show-faces="false"></div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="box-line"></div>
+                    </div>
+            </div>
+        <?$counter++; endforeach; ?>
+    <?endif; ?>
+    <?if($t['nomore']): ?>
+        <div id="nomore-<?=$t['section']?>"></div>
+    <?endif; ?>
+</div>

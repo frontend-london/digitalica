@@ -1,0 +1,23 @@
+
+				<div class="boxbig-news">
+					<div class="boxbig-news-header">
+						<h1><?=$thread['title']?></h1>
+						<?=$thread['date']?>
+					</div>
+                                        <?if($thread['img_big']):?>
+                                            <img src="images/threads/<?=$thread['id']?>_b.jpg" alt="" class="boxbig-news-img">
+                                        <?endif;?>
+
+					<?=$thread['long_text']?>
+
+					<div class="boxbig-news-footer">
+						by: <a href="people"><?=$thread['author_name']?></a>
+						<a href="http://www.addthis.com/bookmark.php?v=250&amp;username=modul" class="addthis_button share">Share</a>
+                                                <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div>
+                                                
+                                                <a href="https://twitter.com/share" class="twitter-share-button" data-via="digitalicapl">Tweet</a>
+
+                                                
+                                                
+					</div>
+				</div>

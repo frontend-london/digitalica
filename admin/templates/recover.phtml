@@ -1,0 +1,34 @@
+<? include('templates/top.phtml');?>
+        <div id="content">
+        	<div id="content-login">
+                    <h1><?=LANG_ZMIANA_HASLA?></h1>
+                    <form method="post" action="<?=SCRIPT."?category=$category&action=recover" ?>">
+                        <?if(!empty($t['message'])):?>
+                            <div id="logowanie-top">
+                                <?=$t['message'];?><br /><br />
+                                <a href="<?=SCRIPT."?category=$category&action=login" ?>">&lt; <?=LANG_POWROT_DO_OKNA_LOGOWANIA?></a><br /><br />
+                            </div>
+                        <?else:?>
+                            <?if(!empty($t['message2'])):?>
+                                <div id="logowanie-top">
+                                    <?=LANG_WYSTAPIL_BLAD?> <?=$t['message2'];?><br /><br />
+                                </div>
+                            <?endif;?>
+                            <div id="logowanie-left">
+                                <label for="username"><?=LANG_UZYTKOWNIK?>:</label>
+                                <label for="password"><?=LANG_NOWE_HASLO?>:</label>
+                                <label for="password2"><?=LANG_POWTORZ_HASLO?>:</label>
+                            </div>
+                            <div id="logowanie-right">
+                                <input type="text" name="username2" id="username2" value="<?=$t['username'];?>" disabled="disabled" /><br /><br />
+                                <input type="hidden" name="username" value="<?=$t['username']?>" id="username" />
+                                <input type="hidden" name="password_recover" value="<?=$t['password_recover']?>" id="password_recover" />
+                                <input type="password" name="password" id="password"  /><br /><br />
+                                <input type="password" name="password2" id="password2"  /><br /><br />
+                                <input type="submit" name="continue" id="continue" value="<?=LANG_ZMIEN_HASLO?>" /><br /><br />
+                            </div>
+                        <?endif;?>
+                    </form>
+                </div>
+        </div>
+<? include('templates/bottom.phtml');?>

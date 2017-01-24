@@ -1,0 +1,25 @@
+<? include('templates/top.phtml');?>
+        <div id="content">
+        	<div id="content-login">
+                    <h1><?=LANG_ZAPOMNIALEM_HASLO?></h1>
+                    <form method="post" action="<?=SCRIPT."?category=$category&action=remind" ?>">
+                        <?if(!empty($t['message'])):?>
+                            <div id="logowanie-top">
+                                <?=$t['message'];?><br /><br />
+                                <a href="<?=SCRIPT."?category=$category&action=login" ?>">&lt; <?=LANG_POWROT_DO_OKNA_LOGOWANIA?></a><br /><br />
+                            </div>
+                        <?else:?>
+                            <div id="logowanie-left">
+                                <label for="username"><?=LANG_ADRES_EMAIL?>:</label>
+                            </div>
+                            <div id="logowanie-right">
+                                <input type="text" name="email" id="email" value="" /><br /><br />
+                                <?=LANG_ADRES_EMAIL_TEKST?><br /><br />
+                                <input type="submit" name="login" id="login" value="<?=LANG_KONTYNUUJ?> &gt;" /><br /><br />
+                                <a href="<?=SCRIPT."?category=$category&action=login" ?>">&lt; <?=LANG_POWROT_DO_OKNA_LOGOWANIA; ?></a><br /><br />
+                            </div>
+                        <?endif;?>
+                    </form>
+                </div>
+        </div>
+<? include('templates/bottom.phtml');?>

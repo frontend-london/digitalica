@@ -1,0 +1,66 @@
+<? include('templates/top.phtml');?>
+    <div id="submenu">
+        <h1><?=$_SESSION['sections'][$active_category]['name_'.LANG]?></h1>
+        <ul>
+            <?if(!empty($t['menu'])): ?>
+                <?$counter=0; foreach ($t['menu'] as $menu): ?>
+                    <li>
+                        <a class="submenu-left<?if($menu['id']==$t['record']['id']):?>-selected<?endif;?>" href="<?=SCRIPT."?category=$category&action=edit&id={$menu['id']}"?>"><?=$menu['name']?></a>
+                        <div class="submenu-right">
+                            <?if($menu['active']):?>
+                                <a href="<?=SCRIPT."?category=$category&action=turnOff&id_s={$menu['id']}&id={$t['record']['id']}"?>"<?if($menu['id']==$t['record']['id']):?> onClick="if(confirm('<?=LANG_KONTA_WYLACZ_KOMUNIKAT?>')) return confirm('<?=LANG_KONTA_WYLACZ_KOMUNIKAT2?>'); else return false;"<?else:?> onClick="return confirm('<?=LANG_KONTA_WYLACZ_KOMUNIKAT?>');"<?endif;?> class="turnon"><?=LANG_WLACZONY?></a>
+                            <?else:?>
+                                    <a href="<?=SCRIPT."?category=$category&action=turnOn&id_s={$menu['id']}&id={$t['record']['id']}"?>" onClick="return confirm('<?=LANG_KONTA_WLACZ_KOMUNIKAT?>');" class="turnoff"><?=LANG_WYLACZONY?></a>
+                            <?endif;?>
+                            <a href="<?=SCRIPT."?category=$category&action=delete&id_s={$menu['id']}&id={$t['record']['id']}"?>" class="delete" onClick="return confirm('<?=LANG_KONTO_KOMUNIKAT11?>');"><?=LANG_USUN?></a>
+                        </div>
+                    </li>
+                <?$counter++; endforeach; ?>
+            <?endif; ?>
+            <li class="noborder">
+                <a class="submenu-right" href="<?=SCRIPT."?category=$category&action=add"?>">+ <?=LANG_UTWORZ_KONTO?></a>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <form method="post" action="<?=SCRIPT."?category=$category&action={$t['action']}" ?>" enctype="multipart/form-data">
+            <ul>
+                <?if(!empty ($t['message'])):?>
+                    <li class="bold red">
+                        <?=$t['message']?>
+                    </li>                
+                <?endif;?>
+                <li>
+                    <span class="content-span"><?=LANG_NAZWA?></span>
+                    <input name="name" type="text" value="<?=$t['record']['name']?>" />
+                </li>
+                <li>
+                    <span class="content-span"><?=LANG_LOGIN?></span>
+                    <input name="login" type="text" value="<?=$t['record']['login']?>" />
+                </li>
+                <li>
+                    <span class="content-span"><?=LANG_ADRES_EMAIL?></span>
+                    <input name="email" type="text" value="<?=$t['record']['email']?>" />
+                </li>
+                <li>
+                    <span class="content-span"><?=LANG_KATEGORIE?></span>
+                    <div style="padding-left:90px;">
+                        <?if(!empty($t['record']['all_sections'])): ?>
+                            <?$counter=0; foreach ($t['record']['all_sections'] as $s): ?>
+                                <label>
+                                    <input type="checkbox" name="section_<?=$s['id']?>" class="checkbox" <?if($t['record']['sections'][$s['id']]):?> checked="checked"<?endif;?>/> &nbsp; <?=$s['name_'.LANG]?>
+                                </label><br>
+                            <?$counter++; endforeach; ?>
+                        <?endif; ?>
+                    </div>
+                </li>
+                <li class="noborder">
+                    <div id="content-zapisz">
+                        <input type="hidden" name="id" value="<?=$t['record']['id']?>" />
+                        <input type="image" id="content-zapisz-button" src="images/cms/langs/<?=LANG?>/button-zapisz-zmiany.gif" />
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+<? include('templates/bottom.phtml');?>

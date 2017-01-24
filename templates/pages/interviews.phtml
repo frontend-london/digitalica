@@ -1,0 +1,23 @@
+<? include('templates/other/top.phtml');?>
+			<div class="sectionbig">
+				<div class="section-title">
+					<a href="interviews"><img src="images/home/interviews.png" alt="interviews - Questions & answers to designers and musicians"></a>
+				</div>
+                            
+                                <?$counter = 0; foreach($interviews as $interview):?>
+                            
+                                    <div class="boxbig-interviews <?if($interview==end($interviews)):?> last<?endif;?>">
+
+                                        <a href="interviews/<?=$interview['url']?>">
+                                            <img src="images/interviews/<?=$interview['id']?>.jpg" alt="" class="bi-img-<?if($counter%2==0):?>pink<?else:?>brown<?endif?>">
+                                        </a>
+					<div class="bi-text">
+                                                <a href="interviews/<?=$interview['url']?>" class="bi-text-name"><?=$interview['title']?></a><br><br>
+						<p><?=$interview['short_text']?></p> <br /> <a href="interviews/<?=$interview['url']?>">see interview »</a>
+					</div>
+					<div class="clear"></div>
+                                    </div>
+                            
+                                <?$counter++; endforeach;?>
+			</div>
+<? include('templates/other/bottom.phtml');?>

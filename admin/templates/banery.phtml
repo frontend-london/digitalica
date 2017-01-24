@@ -1,0 +1,45 @@
+<? include('templates/top.phtml');?>
+    <div id="submenu">
+        <h1><?=$_SESSION['sections'][$active_category]['name_'.LANG]?></h1>
+    </div>
+    <div id="content">
+        <form method="post" action="<?=SCRIPT."?category=$category&action={$t['action']}" ?>" enctype="multipart/form-data">
+            <ul>
+                <?if(!empty ($t['message'])):?>
+                    <li class="bold red">
+                        <?=$t['message']?>
+                    </li>
+                <?endif;?>
+                <?if(!empty($t['galeria'])): ?>
+                    <li class="noborder">
+                        <span class="content-span"><?=LANG_BANERY?>: <br>(283x138px, format: jpg)</span>
+                        <div id="content-zdjecia-cointainer">
+                            <? $counter=0; foreach ($t['galeria'] as $gallery): ?>
+                                <div class="content-zdjecie-galeria" >
+                                    <img src="images/banners/<?=$gallery['id']?>.jpg" alt="" class="content-zdjecie-galeria-image" />
+                                    <div class="content-zdjecie-links">
+                                        <input type="text" value="<?=$gallery['url']?>" name="gallery-url[<?=$gallery['id']?>]"/><div class="clear"></div>
+                                        <a href="<?=SCRIPT."?category=$category&action=delete-gallery&id_s={$gallery['id']}&id={$t['record']['id']}"?>" onclick="return confirm('<?=LANG_BANERY_KOMUNIKAT?>');"><?=LANG_BANERY_USUN?></a>
+                                    </div>
+                                </div>
+                            <?$counter++; endforeach; ?>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                <?endif; ?>
+                <li>
+                    <span class="content-span"><?=LANG_BANERY_DODAJ?>:</span>
+                    <input type="file"  name="image-gallery" /><br>
+                    <span class="content-span">URL:</span>
+                    <input type="text" value="" name="gallery-url[new]" />
+                </li>
+                <li class="noborder">
+                    <div id="content-zapisz">
+                        <input type="hidden" name="id" value="<?=$t['record']['id']?>" />
+                        <input type="image" id="content-zapisz-button" src="images/cms/langs/<?=LANG?>/button-zapisz-zmiany.gif" />
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+<? include('templates/bottom.phtml');?>

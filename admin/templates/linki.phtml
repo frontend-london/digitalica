@@ -1,0 +1,36 @@
+<? include('templates/top.phtml');?>
+    <div id="submenu">
+        <h1><?=$_SESSION['sections'][$active_category]['name_'.LANG]?></h1>
+        <br />
+        <form method="post" action="<?=SCRIPT."?category=$category&action=search" ?>" id="form_linki_search" name="form_linki_search">
+            <input type="text" name="url" value="<?=$t['url']?>"> &nbsp; <a href="javascript: document.form_linki_search.submit();" class="orange"><?=LANG_LINKI_SZUKAJ_W_HISTORII?> &raquo;</a>
+        </form>
+    </div>
+    <div id="content">
+        <form method="post" action="<?=SCRIPT."?category=$category&action={$t['action']}" ?>" enctype="multipart/form-data">
+            <ul>
+                <?if(!empty ($t['message'])):?>
+                    <li class="bold red">
+                        <?=$t['message']?>
+                    </li>                
+                <?endif;?>
+
+                <?if(!empty($t['record'])): ?>
+                    <?$counter=0; foreach ($t['record'] as $r): ?>
+                        <li>
+                            <a target="_blank" href="<?=$r['url']?>"><?=$r['url']?></a> &nbsp; - <?=LANG_DODAL?> <a href="mailto:<?=$r['email']?>"><?=$r['nick']?> (<?=$r['email']?>)</a> (<?=$r['date']?>)
+                            <span style="float:right;">
+                                <a href="<?=SCRIPT."?category=$category&action=search&url=".urlencode($r['url'])?>"><?=LANG_LINKI_SPRAWDZ_HISTORIE?></a> |
+                                <?if($r['deleted']):?>
+                                    Usunięty
+                                <?else:?>
+                                    <a href="<?=SCRIPT."?category=$category&action=delete&id={$r['id']}"?>" onClick="return confirm('<?=LANG_LINKI_KOMUNIKAT?>');" ><?=LANG_USUN?></a>
+                                <?endif;?>
+                            </span>
+                        </li>
+                    <?$counter++; endforeach; ?>
+                <?endif; ?>
+            </ul>
+        </form>
+    </div>
+<? include('templates/bottom.phtml');?>

@@ -1,0 +1,36 @@
+<? include('templates/other/top.phtml');?>
+			<div class="sectionbig">
+				<div class="section-title">
+					<a href="interviews"><img src="images/home/interviews.png" alt="interviews - Questions & answers to designers and musicians"></a>
+				</div>
+
+                                <p>
+                                    <strong><?=$interview['title']?></strong> -
+                                    <?=$interview['beginning']?>
+                                    <br /><br />
+                                    <div style="text-align:center;">
+                                        <img src="images/interviews/<?=$interview['id']?>_b.jpg" alt="<?=$interview['title']?>"  />
+                                    </div>
+                                </p>
+                                
+                                <?foreach($interview['content'] as $content):?>
+                                    <div class="boxbig-interviews-question">
+                                            <?=$content['question']?>
+                                    </div>
+
+                                    <div class="boxbig-interviews-answer">
+                                            <?=$content['answer']?>
+                                    </div>
+                                <?endforeach;?>
+
+                                <br /><br />
+                                <?=$interview['ending']?>
+                                <br />
+                                <p><a href="interviews">&laquo; Back to Interviews</a></p>
+                                <br /><br />
+                                <br /><br /><br /><br />
+
+
+
+			</div>
+<? include('templates/other/bottom.phtml');?>

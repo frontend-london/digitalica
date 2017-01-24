@@ -1,0 +1,80 @@
+<? include('templates/top.phtml');?>
+    <div id="submenu">
+        <h1><?=$_SESSION['sections'][$active_category]['name_'.LANG]?></h1>
+        <ul>
+            <?if(!empty($t['menu'])): ?>
+                <?$counter=0; foreach ($t['menu'] as $menu): ?>
+                    <li>
+                        <a class="submenu-left-shorter<?if($menu['id']==$t['record']['id']):?>-selected<?endif;?>" href="<?=SCRIPT."?category=$category&action=edit&id={$menu['id']}"?>"><?=$menu['title']?></a>
+                        <div class="submenu-right-longer">
+                            <?if($counter==0): ?>
+                                <img src="images/cms/arrows/top.gif" />
+                            <? else: ?>
+                                <a href="<?=SCRIPT."?category=$category&action=swap&id1={$menu['id']}&id2={$t['menu'][$counter-1]['id']}&id={$t['record']['id']}"?>"><img src="images/cms/arrows/top-a.gif" ></a>
+                            <? endif; ?>
+                            &nbsp;
+                            <?if($menu['active']):?>
+                                <a href="<?=SCRIPT."?category=$category&action=turnOff&id_s={$menu['id']}&id={$t['record']['id']}"?>" class="turnon"><?=LANG_WLACZONY?></a>
+                            <?else:?>
+                                <a href="<?=SCRIPT."?category=$category&action=turnOn&id_s={$menu['id']}&id={$t['record']['id']}"?>" class="turnoff"><?=LANG_WYLACZONY?></a>
+                            <?endif;?>
+                            <a href="<?=SCRIPT."?category=$category&action=delete&id_s={$menu['id']}&id={$t['record']['id']}"?>" class="delete" onClick="return confirm('<?=LANG_USUN_KOMUNIKAT?>');"><?=LANG_USUN?></a>
+                            &nbsp;
+                            <?if($menu==end($t['menu'])): ?>
+                                <img src="images/cms/arrows/bottom.gif" />
+                            <?else:?>
+                                <a href="<?=SCRIPT."?category=$category&action=swap&id1={$menu['id']}&id2={$t['menu'][$counter+1]['id']}&id={$t['record']['id']}"?>"><img src="images/cms/arrows/bottom-a.gif"></a>
+                            <?endif;?>
+                        </div>
+                    </li>
+                <?$counter++; endforeach; ?>
+            <?endif; ?>
+            <li class="noborder">
+                <a class="submenu-right" href="<?=SCRIPT."?category=$category&action=add"?>"><?=LANG_DODAJ_WPIS?></a>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <form method="post" action="<?=SCRIPT."?category=$category&action={$t['action']}" ?>" enctype="multipart/form-data">
+            <ul>
+                <?if(!empty ($t['message'])):?>
+                    <li class="bold red">
+                        <?=$t['message']?>
+                    </li>                
+                <?endif;?>
+                <li>
+                    <span class="content-span"><?=LANG_TYTUL?></span>
+                    <input name="title" type="text" value="<?=isset($t['record']['title'])?$t['record']['title']:''?>" />
+                </li>
+                <?php if($t['record']['img_big']): ?>
+                    <li>
+                        <span class="content-span"><?=LANG_ZDJECIE_GLOWNE?></span>
+                        <input type="hidden" name="is_img_big" value="1" />
+                        <div id="main-picture-container_big">
+                            <img src="images/people/<?=$t['record']['id'] ?>.jpg" alt=""/>
+                            <div class="content-img-top-a">
+                                <a href="<?=SCRIPT."?category=$category&action=delete-img_big&id={$t['record']['id']}"?>" class="content-usun" onclick="return confirm('<?=LANG_ZDJECIE_KOMUNIKAT?>');"><?=LANG_USUN?></a>
+                            </div>
+                        </div>
+                    </li>
+                <?php else:?>
+                    <li>
+                        <span class="content-span"><?=LANG_ZDJECIE_GLOWNE?></span>
+                        <input type="hidden" name="is_img_big" value="0" />
+                        <input type="file" name="img_big" />
+                    </li>
+                <?php endif;?>
+                <li>
+                    <span class="content-span"><?=LANG_OPIS?></span>
+                    <textarea name="long_text" cols="51" rows="8"><?=isset($t['record']['title'])?$t['record']['long_text']:''?></textarea>
+                </li>
+                <li class="noborder">
+                    <div id="content-zapisz">
+                        <input type="hidden" name="id" value="<?=$t['record']['id']?>" />
+                        <input type="image" id="content-zapisz-button" src="images/cms/langs/<?=LANG;?>/button-zapisz-zmiany.gif" />
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+<? include('templates/bottom.phtml');?>

@@ -1,0 +1,43 @@
+<?
+//print_r($_SESSION); exit();
+?><? include('templates/top.phtml');?>
+    <div id="submenu">
+        <h1><?=$_SESSION['sections'][$active_category]['name_'.LANG]?></h1>
+    </div>
+    <div id="content">
+        <form method="post" action="<?=SCRIPT."?category=$category&action={$t['action']}" ?>" enctype="multipart/form-data">
+            <ul>
+                <?if(!empty ($t['message'])):?>
+                    <li class="bold red">
+                        <?=$t['message']?>
+                    </li>                
+                <?endif;?>
+
+                <li class="noborder" style="margin-bottom:0px; padding-bottom:0px;">
+                    <textarea name="comment" cols="62" rows="8"><?=$t['record']['selected']['comment']?></textarea>
+                </li>
+                <li style="margin:0px; padding:0px;">
+                    <div id="content-zapisz">
+                        <input type="hidden" name="id" value="<?=$t['record']['selected']['id']?>" />
+                        <input type="image" id="content-zapisz-button" src="images/cms/langs/<?=LANG?>/button-zapisz-zmiany.gif" />
+                    </div>
+                </li>
+
+                <?if(!empty($t['record']['records'])): ?>
+                    <?$counter=0; foreach ($t['record']['records'] as $r): ?>
+                        <li>
+                            <?=$r['comment']?>
+                            <strong><?=$r['name']?></strong> &nbsp;
+                            <div style="float:right;">
+                                <?if($r['user']==$_SESSION['id']):?>
+                                    <a href="<?=SCRIPT."?category=$category&action=edit&id={$r['id']}"?>"><?=LANG_EDYTUJ?></a> |
+                                    <a href="<?=SCRIPT."?category=$category&action=delete&id={$r['id']}"?>" onClick="return confirm('<?=LANG_KOMENTARZE_KOMUNIKAT?>');"><?=LANG_USUN?></a>
+                                <?endif;?>
+                            </div>
+                        </li>
+                    <?$counter++; endforeach; ?>
+                <?endif; ?>
+            </ul>
+        </form>
+    </div>
+<? include('templates/bottom.phtml');?>

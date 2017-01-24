@@ -1,0 +1,123 @@
+			<div class="section-search">
+
+				<div class="section-title">
+					<img src="images/home/search.gif" alt="search">
+				</div>
+
+				<div id="box-search">
+                                    <form method="get" action="search/search.php" name="search_form">
+					<input type="text" name="query" value="search..." id="search-input" class="inputBlur">
+                                        <input type="hidden" name="search" value="1">
+					<input type="submit" id="search-submit" value="">
+					<a href="javascript: document.search_form.submit();" id="search-button"> </a>
+                                    </form>
+				</div>
+
+				<div class="box-pink2">
+                                        <?if(!empty($t['good_events'])): ?>
+                                            <div class="box-title-div" id="box-title-goodevents">
+                                                    <img src="images/home/good-events.png" alt="good events">
+                                            </div>
+                                            <?$counter=0; foreach ($t['good_events'] as $box): ?>
+                                                <div class="box-header">
+                                                        <div class="box-line"></div>
+                                                        <div class="box-header-left">
+                                                                <?=$box['date']?> &nbsp; &nbsp; <a href="good-events/<?=$box['url']?>"><b><?=$box['title']?></b></a>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        <div class="box-line"></div>
+                                                        <?if($box['img_small']):?>
+                                                            <a href="good-events/<?=$box['url']?>"><img src="images/threads/<?=$box['id']?>.jpg" alt="" class="box-image"></a>
+                                                            <div class="box-line"></div>
+                                                        <?endif;?>
+                                                </div>
+                                                <div class="box-text">
+                                                    <?=$box['short_text']?>
+                                                </div>
+                                            <?$counter++; endforeach; ?>
+                                        <?endif; ?>
+
+                                        <?if(!empty($t['design_shock'])): ?>
+                                            <div class="box-title-div">
+                                                    <img src="images/home/design-shock.png" alt="design-shock">
+                                            </div>
+                                            <?$counter=0; foreach ($t['design_shock'] as $box): ?>
+                                                <div class="box-header">
+                                                        <div class="box-line"></div>
+                                                        <div class="box-header-left">
+                                                                <?=$box['date']?> &nbsp; &nbsp; <a href="design-shock/<?=$box['url']?>"><b><?=$box['title']?></b></a>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        <div class="box-line"></div>
+                                                        <?if($box['img_small']):?>
+                                                            <a href="design-shock/<?=$box['url']?>"><img src="images/threads/<?=$box['id']?>.jpg" alt="" class="box-image"></a>
+                                                            <div class="box-line"></div>
+                                                        <?endif;?>
+                                                </div>
+                                                <div class="box-text">
+                                                    <?=$box['short_text']?>
+                                                </div>
+                                            <?$counter++; endforeach; ?>
+                                        <?endif; ?>
+
+                                        <?if(!empty($t['pop_stuff'])): ?>
+                                            <div class="box-title-div">
+                                                    <img src="images/home/pop-stuff.png" alt="pop-stuff">
+                                            </div>
+                                            <?$counter=0; foreach ($t['pop_stuff'] as $box): ?>
+                                                <div class="box-header">
+                                                        <div class="box-line"></div>
+                                                        <div class="box-header-left">
+                                                                <?=$box['date']?> &nbsp; &nbsp; <a href="pop-stuff/<?=$box['url']?>"><b><?=$box['title']?></b></a>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        <div class="box-line"></div>
+                                                        <?if($box['img_small']):?>
+                                                            <a href="pop-stuff/<?=$box['url']?>"><img src="images/threads/<?=$box['id']?>.jpg" alt="" class="box-image"></a>
+                                                            <div class="box-line"></div>
+                                                        <?endif;?>
+                                                </div>
+                                                <div class="box-text">
+                                                    <?=$box['short_text']?>
+                                                </div>
+                                            <?$counter++; endforeach; ?>
+                                        <?endif; ?>
+				</div>
+				<div id="box-advert">
+					<a href="#"><img src="images/tmp/advert.gif" alt="Miejsce na jakąkolwiek reklamę"></a>
+				</div>
+
+			</div>
+			<div class="clear"></div>
+
+			<div id="footer">
+				<ul id="footermenu">
+					<li<?if($category=='home'):?> id="footermenu-selected"<?endif;?>><a href="home">home</a></li>
+					<li<?if($category=='people'):?> id="footermenu-selected"<?endif;?>><a href="people">people</a></li>
+					<li<?if($category=='about-digitalica'):?> id="footermenu-selected"<?endif;?>><a href="about-digitalica">about digitalica</a></li>
+					<li<?if($category=='splashes'):?> id="footermenu-selected"<?endif;?>><a href="splashes">splashes</a></li>
+					<li<?if($category=='faq'):?> id="footermenu-selected"<?endif;?>><a href="faq">faq</a></li>
+				</ul>
+				<div id="footerfollow">
+					Follow us on: &nbsp; &nbsp;
+					<a href="http://twitter.com/#!/digitalicapl" target="_blank"><img src="images/icons/twitter.gif" alt="twitter"></a>
+					&nbsp; &nbsp;
+					<a href="http://www.facebook.com/pages/Digitalica/173165176060763" target="_blank"><img src="images/icons/facebook.gif" alt="facebook"></a>
+				</div>
+				<div id="footersee">
+					<select name="seealso" id="footersee-select">
+						<option>See also...</option>
+						<option>See also 2 </option>
+						<option>See also 3 </option>
+						<option>See also 4 </option>
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="box-line"></div>
+				Copyright Digitalica Team 2010. Digitalica is proudly powered by Work Temple CMS.<br>
+				Entries (<a href="#">RSS</a>) and Comments (<a href="#">RSS</a>).
+			</div>
+		</div>
+	</div>
+</body>
+</html>

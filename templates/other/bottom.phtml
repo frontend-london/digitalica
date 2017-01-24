@@ -1,0 +1,126 @@
+			<div class="section-search">
+
+				<div class="section-title">
+					<img src="images/home/search.gif" alt="search">
+				</div>
+
+				<div id="box-search">
+                                    <form method="get" action="search/search.php" name="search_form" id="search_form">
+					<input type="text" name="query" value="search..." id="search-input" class="inputBlur">
+                                        <input type="hidden" name="search" value="1">
+					<input type="submit" id="search-submit" value="">
+					<a href="#" id="search-button"> </a>
+                                    </form>
+				</div>
+
+				<div class="box-pink2">
+                                        <?if(!empty($t['good_events'])): ?>
+                                            <div class="box-title-div" id="box-title-goodevents">
+                                                    <img src="images/home/good-events.png" alt="good events">
+                                            </div>
+                                            <?$counter=0; foreach ($t['good_events'] as $box): ?>
+                                                <div class="box-header">
+                                                        <div class="box-line"></div>
+                                                        <div class="box-header-left">
+                                                                <?=$box['date']?> &nbsp; &nbsp; <a href="good-events/<?=$box['url']?>"><b><?=$box['title']?></b></a>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        <div class="box-line"></div>
+                                                        <?if($box['img_small']):?>
+                                                            <a href="good-events/<?=$box['url']?>"><img src="images/threads/<?=$box['id']?>.jpg" alt="" class="box-image"></a>
+                                                            <div class="box-line"></div>
+                                                        <?endif;?>
+                                                </div>
+                                                <div class="box-text">
+                                                    <?=$box['short_text']?>
+                                                </div>
+                                            <?$counter++; endforeach; ?>
+                                        <?endif; ?>
+
+                                        <?if(!empty($t['design_shock'])): ?>
+                                            <div class="box-title-div">
+                                                    <img src="images/home/design-shock.png" alt="design-shock">
+                                            </div>
+                                            <?$counter=0; foreach ($t['design_shock'] as $box): ?>
+                                                <div class="box-header">
+                                                        <div class="box-line"></div>
+                                                        <div class="box-header-left">
+                                                                <?=$box['date']?> &nbsp; &nbsp; <a href="design-shock/<?=$box['url']?>"><b><?=$box['title']?></b></a>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        <div class="box-line"></div>
+                                                        <?if($box['img_small']):?>
+                                                            <a href="design-shock/<?=$box['url']?>"><img src="images/threads/<?=$box['id']?>.jpg" alt="" class="box-image"></a>
+                                                            <div class="box-line"></div>
+                                                        <?endif;?>
+                                                </div>
+                                                <div class="box-text">
+                                                    <?=$box['short_text']?>
+                                                </div>
+                                            <?$counter++; endforeach; ?>
+                                        <?endif; ?>
+                                        <div id="facebook-box">
+                                            <div class="box-line"></div>
+                                            <div class="fb-like-box" data-href="https://www.facebook.com/digitalicapl" data-width="252" data-height="256" data-show-faces="true" data-border-color="#FBDEDE" data-stream="false" data-header="false"></div>
+                                            <!--<fb:fan profile_id='173165176060763' width='252' height='256' show_faces='true' stream='false' header='false' css='http://digitalica.pl/styles/facebook.css?1'></fb:fan>-->
+                                        </div>
+				</div>
+				<div id="box-advert">
+                                    <a href="<?=$t['banner']['url']?>" target="_blank"><img src="images/banners/<?=$t['banner']['id']?>.jpg" alt="<?=$t['banner']['url']?>"></a>
+				</div>
+
+			</div>
+			<div class="clear"></div>
+
+			<div id="footer">
+				<ul id="footermenu">
+					<li<?if($category=='home'):?> id="footermenu-selected"<?endif;?>><a href="home">home</a></li>
+					<li<?if($category=='people'):?> id="footermenu-selected"<?endif;?>><a href="people">people</a></li>
+					<li<?if($category=='about-digitalica'):?> id="footermenu-selected"<?endif;?>><a href="about-digitalica">about digitalica</a></li>
+					<li<?if($category=='interviews'):?> id="footermenu-selected"<?endif;?>><a href="interviews">interviews</a></li>
+					<li<?if($category=='faq'):?> id="footermenu-selected"<?endif;?>><a href="faq">faq</a></li>
+				</ul>
+				<div id="footerfollow">
+					Follow us on: &nbsp; &nbsp;
+					<a href="http://twitter.com/digitalicapl" target="_blank"><img src="images/icons/twitter.gif" alt="twitter"></a>
+					&nbsp; &nbsp;
+					<a href="http://www.facebook.com/pages/Digitalica/173165176060763" target="_blank"><img src="images/icons/facebook.gif" alt="facebook"></a>
+				</div>
+				<div id="footersee">
+					<select name="seealso" id="footersee-select">
+                                            <option>See also...</option>
+                                            <option value="http://www.datasky.pl">Datasky</option>
+                                            <option value="http://www.urbanimpulz.com">Urban Impulz Rec</option>
+                                            <option value="http://www.enbike.co.uk">EnBike</option>
+                                            <option value="http://www.globaltrance.pl">GlobalTrance</option>
+                                            <option value="http://www.smashintracks.com">SmashinTracks</option>
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="box-line"></div>
+				Copyright <a href="mailto:hello@digitalica.pl">Digitalica Team</a> 2011. Digitalica is proudly powered by Work Temple CMS. &nbsp; <a href="rss/">RSS</a>
+                                <div id="footerwegroup">
+                                    <span>A part of</span> <a href="http://www.wegroup.pl/" target="_blank"><img src="images/icons/wegroup.gif" alt="We Group" /></a>
+                                </div>
+                                <div class="clear"></div>
+				
+			</div>
+
+                        <div id="boxAddWebsite" style=" display:none;">
+                            <div id="boxAddWebsite-content">
+                                <form method="post" name="boxAddWebsiteForm" id="boxAddWebsiteForm" action="ajaxAddWebsite">
+                                    <a href="#boxAddWebsite" class="addWebsiteCloseDOMWindow" id="baw-close">Close »</a>
+                                    <input type="hidden" name="sent" value="1">
+                                    <input type="text" name="name" value="your name" class="inputBlur" id="baw-name" />
+                                    <input type="text" name="email" value="e-mail" class="inputBlur" id="baw-email" />
+                                    <input type="text" name="url" value="url" class="inputBlur" id="baw-url" />
+                                    <!--<input type="submit" value="Send" id="baw-sendFake">-->
+                                    <a href="javascript: document.boxAddWebsiteForm.submit();" id="baw-send">Send</a>
+                                </form>
+                            </div>
+                        </div>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title><?=(empty($t['title']))?$category.'':$t['title'];?> - digitalica</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Language" content="pl">
+	<meta name="Description" content="<?=(empty($t['description']))?$category.'':$t['description'];?>">
+	<meta name="Author" content="Digitalica Team ">
+        <base href="<?=ADRES;?>">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link type="text/css" rel="stylesheet" href="styles/style.css" />
+	<link rel="alternate" type="application/rss+xml" href="rss" title="RSS Digitalica.pl" />
+
+	<script type="text/javascript" src="scripts/jquery/jquery.js"></script>
+        <script type="text/javascript" src="scripts/jquery/jquery.form.js"></script>
+        <script type="text/javascript" src="scripts/jquery/jquery.DOMWindow.js"></script>
+	<script type="text/javascript" src="scripts/common.js"></script>
+        
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=modul"></script>
+        <script type="text/javascript" src="scripts/addthis.js"></script>
+        <script type="text/javascript" src="scripts/stats.js"></script>
+</head>
+<body>
+        <div id="fb-root"></div>
+        <script type="text/javascript" src="scripts/facebook_twitter.js"></script>
+	<div id="wrap">
+		<div id="innerwrap">
+			<a href="home" id="logo">digitalica</a>
+			<ul id="mainmenu">
+				<li><a rel="hover" href="home"><img src="images/mainmenu/<?if($category=='home'):?>hover<?else:?>original<?endif;?>/home.gif" alt="Home"></a></li>
+				<li><a rel="hover" href="people"><img src="images/mainmenu/<?if($category=='people'):?>hover<?else:?>original<?endif;?>/people.gif" alt="People"></a></li>
+				<li><a rel="hover" href="about-digitalica"><img src="images/mainmenu/<?if($category=='about-digitalica'):?>hover<?else:?>original<?endif;?>/about-digitalica.gif" alt="About Digitalica"></a></li>
+				<li><a rel="hover" href="interviews"><img src="images/mainmenu/<?if($category=='interviews'):?>hover<?else:?>original<?endif;?>/interviews.gif" alt="Interviews"></a></li>
+				<li><a rel="hover" href="faq"><img src="images/mainmenu/<?if($category=='faq'):?>hover<?else:?>original<?endif;?>/faq.gif" alt="Faq"></a></li>
+			</ul>

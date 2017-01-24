@@ -1,0 +1,92 @@
+<? include('templates/other/top.phtml');?>
+			<div class="section-design">
+
+				<div class="section-title">
+					<img src="images/home/design-stuff.png" alt="design stuff - Strictly selected designs from whole internet">
+				</div>
+                                <div id="boxes-design">
+                                    <?if(!empty($t['design_stuff'])): ?>
+                                        <?$counter=0; foreach ($t['design_stuff'] as $box): ?>
+                                            <div class="box-pink">
+                                                    <div class="box-color">
+                                                            <p class="box-title-p"><a href="design-stuff/<?=$box['url']?>"><?=$box['title']?></a></p>
+                                                            <p class="box-date"><?=$box['date']?></p>
+                                                            <?if($box['img_small']):?>
+                                                                <div class="box-line"></div>
+                                                                <a href="design-stuff/<?=$box['url']?>"><img src="images/threads/<?=$box['id']?>.jpg" alt="" class="box-image"></a>
+                                                            <?endif;?>
+                                                    </div>
+                                                    <div class="box-line"></div>
+                                                    <div class="box-text">
+                                                        <?=$box['short_text']?>
+                                                    </div>
+                                                    <div class="box-footer">
+                                                            <div class="box-line"></div>
+                                                            <div class="box-footer-left">
+                                                                    by: <a href="people"><?=$box['author_name']?></a>
+                                                            </div>
+                                                            <div class="box-footer-right">
+                                                                    <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=modul" addthis:url="<?=ADRES?>design-stuff/<?=$box['url']?>" class="addthis_button share2">Share</a>
+                                                                    <div class="fb-like" data-send="false" data-href="<?=ADRES?>design-stuff/<?=$box['url']?>" data-layout="button_count" data-show-faces="false"></div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                            <div class="box-line"></div>
+                                                    </div>
+                                            </div>
+                                        <?$counter++; endforeach; ?>
+                                    <?endif; ?>
+                                </div>
+
+				<div class="box-news-pink">
+					<div class="box-news-title" id="box-news-title-design"><a href="#" id="more-news-design">More news</a></div>
+					<a href="#boxAddWebsite" class="addWebsiteDOMWindow">Put your website <b>in the air</b>  <span class="pink">»</span></a>
+				</div>
+			</div>
+
+			<div class="section-sound">
+
+				<div class="section-title">
+					<img src="images/home/sound-stuff.gif" alt="sound stuff - Strictly selected sounds from whole internet">
+				</div>
+
+                                <div id="boxes-sound">
+                                    <?if(!empty($t['sound_stuff'])): ?>
+                                        <?$counter=0; foreach ($t['sound_stuff'] as $box): ?>
+                                            <div class="box-brown">
+                                                    <div class="box-color">
+                                                            <p class="box-title-p"><a href="sound-stuff/<?=$box['url']?>"><?=$box['title']?></a></p>
+                                                            <p class="box-date"><?=$box['date']?></p>
+                                                            <?if($box['img_small']):?>
+                                                                <div class="box-line"></div>
+                                                                <a href="sound-stuff/<?=$box['url']?>"><img src="images/threads/<?=$box['id']?>.jpg" alt="" class="box-image"></a>
+                                                            <?endif;?>
+                                                    </div>
+                                                    <div class="box-line"></div>
+                                                    <div class="box-text">
+                                                        <?=$box['short_text']?>
+                                                    </div>
+                                                    <div class="box-footer">
+                                                            <div class="box-line"></div>
+                                                            <div class="box-footer-left">
+                                                                    by: <a href="people"><?=$box['author_name']?></a>
+                                                            </div>
+                                                            <div class="box-footer-right">
+                                                                    <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=modul" addthis:url="<?=ADRES?>sound-stuff/<?=$box['url']?>" class="addthis_button share2">Share</a>
+                                                                    <div class="fb-like" data-send="false" data-href="<?=ADRES?>sound-stuff/<?=$box['url']?>" data-layout="button_count" data-show-faces="false"></div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                            <div class="box-line"></div>
+                                                    </div>
+                                            </div>
+                                        <?$counter++; endforeach; ?>
+                                    <?endif; ?>
+                                </div>
+
+
+				<div class="box-news-brown">
+					<div class="box-news-title" id="box-news-title-sound"><a href="#" id="more-news-sound">More news</a></div>
+					<a href="#boxAddWebsite" class="addWebsiteDOMWindow">Put your website <b>in the air</b>  <span class="pink">»</span></a>
+				</div>
+
+			</div>
+<? include('templates/other/bottom.phtml');?>

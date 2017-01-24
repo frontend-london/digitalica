@@ -1,0 +1,16 @@
+DirectoryIndex index.php index.html index.htm index.php3
+Options -Indexes
+
+RewriteEngine on
+# wlaczenie mechanizmu mod_rewrite
+
+#RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# omija regule gdy pliki fizycznie istnieja
+
+#RewriteRule ^.*\.html$ index.php [QSA]
+RewriteRule ^.*$ index.php [QSA]
+
+# NUMER.php [QSA] = przekazuj parametry

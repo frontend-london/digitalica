@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Robots" content="NOINDEX, NOFOLLOW" />
+    <meta name="Googlebot" content="NOSNIPPET" />
+    <base href="<?=ADRES?>" />
+    <link rel="stylesheet" href="styles/style-admin.css" media="all" />
+    <!--[if IE 6]>
+      <link rel="stylesheet" type="text/css" href="styles/style-admin-ie6.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="styles/style-admin-digitalica.css" media="all" />
+    <link rel="stylesheet" href="styles/lightbox.css" type="text/css" media="screen" />	
+    <title>Enside CMS</title>
+    <script type="text/javascript" src="scripts/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript">
+        tinyMCE_GZ.init({
+            plugins : 'inlinepopups,image,table,preview,fullscreen,noneditable,contextmenu,paste',
+            themes : 'advanced',
+            language : 'pl',
+            disk_cache : true,
+            debug : false
+        });
+    </script>
+    <script type="text/javascript">
+        tinyMCE.init({
+            mode : "textareas",
+            theme : "advanced",
+            language : "<?=LANG?>",
+
+            plugins : 'inlinepopups,image,table,preview,fullscreen,noneditable,contextmenu,paste',
+
+            theme_advanced_buttons1 : 'image,separator,forecolor,bold,italic,underline,separator,bullist,justifyfull,separator,pastetext,pasteword,separator,link,unlink,separator,code,removeformat,fullscreen',
+            theme_advanced_buttons2 : 'tablecontrols',
+
+            theme_advanced_buttons3 : "",
+            theme_advanced_toolbar_location : "top",
+            theme_advanced_toolbar_align : "left",
+            theme_advanced_statusbar_location : "bottom",
+
+            theme_advanced_resizing : true,
+            theme_advanced_resize_horizontal : false,
+
+            relative_urls : false,
+            remove_script_host : false,
+
+            extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]"
+        });
+    </script>
+    <script type="text/javascript" src="scripts/prototype.js"></script>
+    <script type="text/javascript" src="scripts/scriptaculous.js?load=effects,builder"></script>
+    <script type="text/javascript" src="scripts/lightbox.js"></script>
+</head>
+<body>
+	<div id="container">
+        <div id="logo">
+        	<a href="<?=SCRIPT;?>"><img src="images/cms/logo.gif" /></a>
+        </div>
+        <?if($category!='cms'):?>
+            <div id="login">
+                <a href="<?=SCRIPT."?category=cms&action=lang&lang=".generate_next_lang();?>"><?=LANG_ZMIEN_JEZYK?></a> &nbsp;|&nbsp;
+                <?=LANG_ZALOGOWANY_JAKO?> <?=$_SESSION['name']?>
+            </div>
+            <ul id="menu-top">
+                <?if(!empty($_SESSION['sections'])): ?>
+                    <?$counter=0; foreach ($_SESSION['sections'] as $m): ?>
+                        <li><a href="<?=SCRIPT."?category={$m['url']}" ?>"<?if($active_category==$m['id']):?> id="menu-top-a-selected"<?endif;?>><?=$m['name_'.LANG]?></a></li>
+                    <?$counter++; endforeach; ?>
+                <?endif; ?>
+                <li class="menu-top-right"><a href="<?=SCRIPT."?category=cms&action=logout" ?>"><?=LANG_WYLOGUJ?></a></li>
+            </ul>
+        <?endif;?>

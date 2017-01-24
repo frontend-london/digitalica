@@ -1,0 +1,126 @@
+<?php 
+extract($search_results);
+?>
+
+<?php if ($search_results['did_you_mean']){?>
+    <div id="sphider_did_you_mean">
+	<?php echo $sph_messages['DidYouMean'];?>: <a href="<?php print 'search/search.php?query='.quote_replace(addmarks($search_results['did_you_mean'])).'&search=1'?>"><?php print $search_results['did_you_mean_b']; ?></a>?
+        <br /><br />
+    </div>
+<?php  }?>	
+
+<?php if ($search_results['ignore_words']){?>
+	<div id="sphider_common_report">
+	<?php while ($thisword=each($ignore_words)) {
+		$ignored .= " ".$thisword[1];
+	}		
+	$msg = str_replace ('%ignored_words', $ignored, $sph_messages["ignoredWords"]); 
+	echo $msg; ?>
+    </div>
+<?php  }?>	
+
+
+<?php if ($search_results['total_results']==0){?>
+	<div id ="sphider_result_report">
+		<?php 
+		$msg = str_replace ('%query', $ent_query, $sph_messages["noMatch"]);
+		echo $msg;
+		?>
+	</div>
+<?php  }?>	
+
+
+<?php if ($total_results != 0 && $from <= $to){?>
+	<div id="search-results-title">
+	<?php  
+	$result = $sph_messages['Results'];
+	$result = str_replace ('%from', $from, $result);
+	$result = str_replace ('%to', $to, $result);
+	$result = str_replace ('%all', $total_results, $result);
+	$matchword = $sph_messages["matches"];
+	if ($total_results== 1) {
+		$matchword= $sph_messages["match"];
+	} else {
+		$matchword= $sph_messages["matches"];
+	}
+
+	$result = str_replace ('%matchword', $matchword, $result);	 
+	$result = str_replace ('%secs', $time, $result);
+	echo $result;
+	?>
+	</div>
+
+<?php  }?>	
+
+
+<?php if (isset($qry_results)) {
+?>
+
+
+
+<!-- results listing -->
+
+	<?php foreach ($qry_results as $_key => $_row){
+		$last_domain = $domain_name;
+		extract($_row);
+		if ($show_query_scores == 0) {
+			$weight = '';
+		} else {
+			$weight = "($weight%)";
+		}
+		?>
+                <div class="search-result">
+                	<div class="sr-title">
+                            <strong><?php print $num?>. <?php print $weight?></strong> <a href="<?php print $url?>"><?php print ($title?$title:$sph_messages['Untitled'])?></a>
+                        </div>
+                        <div class="sr-desc">
+	                    <?php print $fulltxt?>
+                        </div>
+                    <div class="sr-url">
+	                    <a href="<?php print $url2?>"><?php print $url2?></a> - <?php print $page_size?>
+                    </div>
+                </div>
+	<?php  }?>
+ 
+<?php }?>
+
+<!-- links to other result pages-->
+<?php if (isset($other_pages)) {
+	if ($adv==1) {
+		$adv_qry = "&adv=1";
+	}
+	if ($type != "") {
+		$type_qry = "&type=$type";
+	}
+?>
+        <div id="search-results-paging">
+            <? if ($start >1):?>
+                <a href="<?php print 'search/search.php?query='.quote_replace(addmarks($query)).'&start='.$prev.'&search=1&results='.$results_per_page.$type_qry.$adv_qry.'&domain='.$domain?>" id="srp-prev">&laquo; Prev</a>
+            <? else:?>
+                <span id="srp-prev">&laquo; Prev</span>
+            <? endif;?>
+            
+            <?php  foreach ($other_pages as $page_num) {
+                if ($page_num !=$start){?>
+                        <a href="<?php print 'search/search.php?query='.quote_replace(addmarks($query)).'&start='.$page_num.'&search=1&results='.$results_per_page.$type_qry.$adv_qry.'&domain='.$domain?>"><?php print $page_num?></a> &nbsp;&nbsp;
+                <?php } else {?>
+                        <span><?php print $page_num?></span> &nbsp;&nbsp; 
+                <?php  }?>
+            <?php  }?>
+
+            <? if ($next <= $pages):?>
+                <a href="<?php print 'search/search.php?query='.quote_replace(addmarks($query)).'&start='.$next.'&search=1&results='.$results_per_page.$type_qry.$adv_qry.'&domain='.$domain?>" id="srp-next">Next &raquo;</a>
+            <? else:?>
+                <span id="srp-next">Next &raquo;</span>
+            <? endif;?>
+        </div>
+<?php }?>
+
+
+<div class="divline">
+</div>
+<div id="sphider_powered_by">
+<!--If you want to remove this, please donate to the project at http://www.sphider.eu/donate.php--> 		
+<?php poweredby()?>
+</div>
+

@@ -1,0 +1,24 @@
+<? include('templates/top.phtml');?>
+        <div id="content">
+        	<div id="content-login">
+                    <h1><?=LANG_ZALOGUJ_SIE?></h1>
+                    <form method="post" action="<?=SCRIPT."?category=$category&action=login" ?>">
+                        <?if(!empty($t['message2'])):?>
+                            <div id="logowanie-top">
+                                <?=LANG_WYSTAPIL_BLAD?> <?=$t['message2'];?><br /><br />
+                            </div>
+                        <?endif;?>
+                        <div id="logowanie-left">
+                            <label for="username"><?=LANG_UZYTKOWNIK?>:</label><br />
+                            <label for="password"><?=LANG_HASLO?>:</label>
+                        </div>
+                        <div id="logowanie-right">
+                            <input type="text" name="username" id="username" value="" /><br /><br />
+                            <input type="password" name="password" id="password" /><br /><br />
+                            <a href="<?=SCRIPT."?category=$category&action=remind" ?>"><?=LANG_ZAPOMNIALEM_HASLO?></a><br /><br />
+                            <input type="submit" name="login" id="login" value="<?=LANG_ZALOGUJ_SIE?>" /><br /><br />
+                        </div>
+                    </form>
+                </div>
+        </div>
+<? include('templates/bottom.phtml');?>
